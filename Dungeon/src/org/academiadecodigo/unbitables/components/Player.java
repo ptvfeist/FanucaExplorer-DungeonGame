@@ -12,7 +12,6 @@ public class Player {
     public Player(Scenary scenary) {
 
         player = new Picture(200, 150, "start.png");
-        //player = new Picture(200, 150, "start.png");
         player.draw();
 
         this.scenary = scenary;
