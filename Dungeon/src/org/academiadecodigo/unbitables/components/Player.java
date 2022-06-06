@@ -68,11 +68,18 @@ public class Player {
     public void moveDown() {
 
         if (checkBoundaries(Directions.DOWN)) {
-
             return;
         }
 
         player.translate(0, Scenary.PIXELS);
+
+        if (oneImg) {
+            player.load("down1.png");
+            oneImg = false;
+        } else {
+            player.load("down2.png");
+            oneImg = true;
+        }
     }
 
     private boolean checkBoundaries(Directions direction) {
