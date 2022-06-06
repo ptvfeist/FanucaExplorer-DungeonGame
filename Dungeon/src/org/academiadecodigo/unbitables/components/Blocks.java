@@ -1,6 +1,8 @@
 package org.academiadecodigo.unbitables.components;
 
+import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+
 
 public class Blocks {
 
@@ -8,6 +10,7 @@ public class Blocks {
 
     public Blocks(int x, int y, int maxX, int maxY) {
         block = new Rectangle(x, y, maxX, maxY);
+        block.setColor(Color.MAGENTA);
         block.draw();
     }
 

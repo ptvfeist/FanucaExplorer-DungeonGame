@@ -1,6 +1,7 @@
 package org.academiadecodigo.unbitables.components;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Scenary {
 
@@ -9,26 +10,23 @@ public class Scenary {
 
     private Blocks[] blocks = new Blocks[20];
 
-    private Rectangle background;
-    private Rectangle[] grid;
+    private Picture background;
+    private Picture[] grid;
 
     public Scenary() {
 
-
-        background = new Rectangle(PADDING, PADDING, 50 * PIXELS, 40 * PIXELS);
+        background = new Picture(PADDING, PADDING, "blackBackground.jpeg");
         setLimits();
 
     }
 
     public void init() {
         background.draw();
-
     }
 
     public void setLimits() {
 
         blocks[0] = new Blocks(10, 10, 200, 150);
-
         blocks[1] = new Blocks( 300, 500, 100, 100);
         blocks[2] = new Blocks( 500, 300, 100, 100);
         blocks[3] = new Blocks( 800, 500, 100, 200);
