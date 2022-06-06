@@ -1,6 +1,7 @@
 package org.academiadecodigo.unbitables.components;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+import org.academiadecodigo.unbitables.audio.AudioPlayer;
 
 public class Scenary {
 
@@ -10,6 +11,8 @@ public class Scenary {
     private Blocks[] walls = new Walls[20];
     private Blocks[] floors = new Floor[20];
 
+    private AudioPlayer audioPlayer;
+
     private Picture background;
     private Picture[] grid;
 
@@ -17,12 +20,17 @@ public class Scenary {
 
         background = new Picture(PADDING, PADDING, "blackBackground.jpeg");
 
+
+        //audioPlayer = new AudioPlayer();
+
     }
 
     public void init() {
         background.draw();
         setLimits();
         setFloor();
+
+        //audioPlayer.playMusic("pokemon.wav");
     }
 
     public void setLimits() {
