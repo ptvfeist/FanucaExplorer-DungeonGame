@@ -6,8 +6,8 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class Walls extends Blocks{
 
-    public Walls(int x, int y) {
-        super(x, y, "block1.png");
+    public Walls(int x, int y, String image) {
+        super(x, y, image);
     }
 
 
