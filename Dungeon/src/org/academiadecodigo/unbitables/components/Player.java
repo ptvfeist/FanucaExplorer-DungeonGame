@@ -3,6 +3,8 @@ package org.academiadecodigo.unbitables.components;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.unbitables.Directions;
 
+import java.util.LinkedList;
+
 public class Player {
 
     private Picture player;
@@ -11,7 +13,7 @@ public class Player {
 
     public Player(Scenary scenary) {
 
-        player = new Picture(200, 150, "start.png");
+        player = new Picture(120, 650, "right1.png");
         player.draw();
 
         this.scenary = scenary;
@@ -62,6 +64,14 @@ public class Player {
 
         player.translate(0, -Scenary.PIXELS);
 
+        if (oneImg) {
+            player.load("up1.png");
+            oneImg = false;
+        } else {
+            player.load("up2.png");
+            oneImg = true;
+        }
+
     }
 
     public void moveDown() {
@@ -83,7 +93,7 @@ public class Player {
 
     private boolean checkBoundaries(Directions direction) {
 
-        Blocks[] blocks = scenary.getBlocks();
+        LinkedList<Walls> blocks = scenary.getBlocks();
 
         for (Blocks block : blocks) {
 
