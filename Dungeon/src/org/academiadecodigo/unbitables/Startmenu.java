@@ -74,6 +74,7 @@ public class Startmenu {
     }
     public void startGameName() {
         gameName = new Picture(startBackground.getWidth() / 2, 150, "fanucatheexplorer.png");
+
         gameName.translate(-gameName.getWidth() / 2, 0);
         gameName.grow(50, 20);
         gameName.draw();
