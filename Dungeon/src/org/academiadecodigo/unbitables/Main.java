@@ -3,9 +3,9 @@ package org.academiadecodigo.unbitables;
 public class Main {
     public static void main(String[] args) {
 
-        Game game = new Game();
+        Startmenu menu = new Startmenu();
 
-        game.init();
+        menu.init();
 
     }
 }

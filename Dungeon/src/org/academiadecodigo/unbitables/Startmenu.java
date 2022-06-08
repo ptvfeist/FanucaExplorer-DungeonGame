@@ -1,6 +1,6 @@
-package org.academiadecodigo.GameTesting.Startmenu;
+package org.academiadecodigo.unbitables;
 
-import org.academiadecodigo.GameTesting.KeyboardLogic;
+import org.academiadecodigo.unbitables.KeyboardLogic;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 
@@ -12,6 +12,7 @@ public class Startmenu {
     private Picture gameName;
     private Picture start_game;
     private Picture fanuca;
+    private Game game;
 
 
     private boolean isSkipped = false;
@@ -24,9 +25,10 @@ public class Startmenu {
     private KeyboardLogic keyboardLogic = new KeyboardLogic();
 
     public Startmenu() {
-        keyboardLogic.setStarmenu(this);
+        this.game = new Game();
+        keyboardLogic.setStartmenu(this);
         keyboardLogic.init();
-        Startmenu.this.init();
+
 
     }
 
@@ -41,21 +43,28 @@ public class Startmenu {
         startGameName();
         startFanuca();
         thread1.start();
+
     }
 
 
     public void delete() {
+        if (isSkipped) {
+            return;
+        }
         startBackground.delete();
         start_game.delete();
         gameName.delete();
         fanuca.delete();
+        game.init();
+        isSkipped = true;
     }
 
     public void startBackground() {
         startBackground = new Picture(10, 10, "StartGamePicture.png");
         startBackground.draw();
-        startBackground.grow(500, 200);
-        startBackground.translate(500, 200);
+        startBackground.grow(365,200);
+        startBackground.translate(365,200);
+        System.out.println(startBackground.getWidth() +"\n"+ startBackground.getHeight());
     }
 
     public void startFanuca(){

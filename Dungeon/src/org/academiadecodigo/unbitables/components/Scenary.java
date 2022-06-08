@@ -1,8 +1,7 @@
 package org.academiadecodigo.unbitables.components;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-import org.academiadecodigo.simplegraphics.pictures.Picture;
-import org.academiadecodigo.unbitables.audio.AudioPlayer;
+import org.academiadecodigo.unbitables.audio.Sound;
 
 import java.io.*;
 import java.nio.file.*;
@@ -18,7 +17,7 @@ public class Scenary {
 
     private Blocks[] walls = new Walls[20];
 
-    private AudioPlayer audioPlayer;
+    private Sound sound;
 
     private Rectangle background;
 
