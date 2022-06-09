@@ -43,7 +43,6 @@ public class Startmenu {
         startGameName();
         startFanuca();
         thread1.start();
-
     }
 
 
@@ -127,8 +126,6 @@ public class Startmenu {
                 start_game.grow(-4, -2);
                 Thread.sleep(delay);
                 start_game.grow(-4, -2);
-                Thread.sleep(delay);
-                System.out.println("loop");
 
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
