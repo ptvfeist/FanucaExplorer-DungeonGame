@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Scenary {
 
     public static final int PADDING = 10;
-    public static final int PIXELS = 20;
+    public static final int PIXELS = 25;
 
     private LinkedList<Walls> limits;
 

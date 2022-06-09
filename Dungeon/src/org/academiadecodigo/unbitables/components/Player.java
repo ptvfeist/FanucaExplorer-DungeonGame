@@ -1,5 +1,6 @@
 package org.academiadecodigo.unbitables.components;
 
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.unbitables.Directions;
 
@@ -10,6 +11,7 @@ public class Player {
     private Picture player;
     private boolean oneImg = true;
     private Scenary scenary;
+    private boolean isPressed;
 
     public Player(Scenary scenary) {
 
@@ -20,40 +22,49 @@ public class Player {
 
     }
 
+
+    public void setPressed(boolean pressed) {
+        isPressed = pressed;
+    }
+
     public void moveRight() {
 
         if (checkBoundaries(Directions.RIGHT)) {
             return;
         }
+        if (!isPressed) {
+            player.translate(Scenary.PIXELS, 0);
+            setPressed(true);
 
-        player.translate(Scenary.PIXELS, 0);
 
-        if (oneImg) {
-            player.load("right2.png");
-            oneImg = false;
-        } else {
-            player.load("right1.png");
-            oneImg = true;
+            if (oneImg) {
+                player.load("right2.png");
+                oneImg = false;
+            } else {
+                player.load("right1.png");
+                oneImg = true;
+            }
         }
-
     }
 
     public void moveLeft() {
 
         if (checkBoundaries(Directions.LEFT)) {
+
             return;
         }
+        if (!isPressed) {
+            player.translate(-Scenary.PIXELS, 0);
+            setPressed(true);
 
-        player.translate(-Scenary.PIXELS, 0);
-
-        if (oneImg) {
-            player.load("left1.png");
-            oneImg = false;
-        } else {
-            player.load("left2.png");
-            oneImg = true;
+            if (oneImg) {
+                player.load("left1.png");
+                oneImg = false;
+            } else {
+                player.load("left2.png");
+                oneImg = true;
+            }
         }
-
     }
 
     public void moveUp() {
@@ -61,17 +72,18 @@ public class Player {
         if (checkBoundaries(Directions.UP)) {
             return;
         }
+        if (!isPressed) {
+            player.translate(0, -Scenary.PIXELS);
+            setPressed(true);
 
-        player.translate(0, -Scenary.PIXELS);
-
-        if (oneImg) {
-            player.load("up1.png");
-            oneImg = false;
-        } else {
-            player.load("up2.png");
-            oneImg = true;
+            if (oneImg) {
+                player.load("up1.png");
+                oneImg = false;
+            } else {
+                player.load("up2.png");
+                oneImg = true;
+            }
         }
-
     }
 
     public void moveDown() {
@@ -79,15 +91,17 @@ public class Player {
         if (checkBoundaries(Directions.DOWN)) {
             return;
         }
+        if (!isPressed) {
+            player.translate(0, Scenary.PIXELS);
+            setPressed(true);
 
-        player.translate(0, Scenary.PIXELS);
-
-        if (oneImg) {
-            player.load("down1.png");
-            oneImg = false;
-        } else {
-            player.load("down2.png");
-            oneImg = true;
+            if (oneImg) {
+                player.load("down1.png");
+                oneImg = false;
+            } else {
+                player.load("down2.png");
+                oneImg = true;
+            }
         }
     }
 

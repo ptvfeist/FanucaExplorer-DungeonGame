@@ -39,12 +39,32 @@ public class KeyboardLogic implements KeyboardHandler {
         skipMenu.setKey(KEY_SPACE);
         skipMenu.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
+        KeyboardEvent unblockMovementRight = new KeyboardEvent();
+        unblockMovementRight.setKey(KEY_D);
+        unblockMovementRight.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+
+        KeyboardEvent unblockMovementLeft = new KeyboardEvent();
+        unblockMovementLeft.setKey(KEY_A);
+        unblockMovementLeft.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+
+        KeyboardEvent unblockMovementDown = new KeyboardEvent();
+        unblockMovementDown.setKey(KEY_S);
+        unblockMovementDown.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+
+        KeyboardEvent unblockMovementUp = new KeyboardEvent();
+        unblockMovementUp.setKey(KEY_W);
+        unblockMovementUp.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+
+
         keyboard.addEventListener(right);
         keyboard.addEventListener(left);
         keyboard.addEventListener(up);
         keyboard.addEventListener(down);
         keyboard.addEventListener(skipMenu);
-
+        keyboard.addEventListener(unblockMovementRight);
+        keyboard.addEventListener(unblockMovementLeft);
+        keyboard.addEventListener(unblockMovementDown);
+        keyboard.addEventListener(unblockMovementUp);
     }
 
     public void setPlayer(Player player) {
@@ -85,9 +105,24 @@ public class KeyboardLogic implements KeyboardHandler {
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
+        if (player != null) {
+            switch (keyboardEvent.getKey()) {
+                case KEY_A:
+                    player.setPressed(false);
+                    break;
+                case KEY_D:
+                    player.setPressed(false);
+                    break;
+                case KEY_W:
+                    player.setPressed(false);
+                    break;
+                case KEY_S:
+                    player.setPressed(false);
+                    break;
+            }
 
+
+        }
 
     }
-
-
 }
