@@ -13,6 +13,8 @@ public class KeyboardLogic implements KeyboardHandler {
     private Player player;
     private Startmenu startmenu;
 
+    private EndScreen endScreen;
+
     private Keyboard keyboard;
 
     public void init() {
@@ -75,6 +77,10 @@ public class KeyboardLogic implements KeyboardHandler {
         this.startmenu = startmenu;
     }
 
+    public void setEndScreen(EndScreen endScreen) {
+        this.endScreen = endScreen;
+    }
+
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
         if (player != null)
@@ -91,16 +97,22 @@ public class KeyboardLogic implements KeyboardHandler {
                 case KEY_S:
                     player.moveDown();
                     break;
-            } else {
+            }
+        else if (startmenu != null) {
             switch (keyboardEvent.getKey()) {
                 case KEY_SPACE:
-                startmenu.delete();
-                break;
+                    startmenu.delete();
+                    break;
             }
+        } else {
+            switch (keyboardEvent.getKey()) {
+                case KEY_SPACE:
+                    endScreen.delete();
+                    break;
+            }
+
         }
     }
-
-
 
 
     @Override
