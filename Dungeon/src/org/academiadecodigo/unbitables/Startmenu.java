@@ -17,17 +17,12 @@ public class Startmenu {
 
     private boolean isSkipped = false;
 
-    private int delay = 50;
-
-    // logo color #50824c
-    // logo outline color #30502d
+    private int delay = 40;
 
     private KeyboardLogic keyboardLogic = new KeyboardLogic();
 
     public Startmenu() {
         this.game = new Game();
-
-
 
     }
 
@@ -52,12 +47,22 @@ public class Startmenu {
         if (isSkipped) {
             return;
         }
+
+        isSkipped = true;
+
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+
         startBackground.delete();
         start_game.delete();
         gameName.delete();
         fanuca.delete();
         game.init();
-        isSkipped = true;
+
     }
 
     public void startBackground() {
@@ -90,42 +95,118 @@ public class Startmenu {
             try {
                 Thread.sleep(delay);
                 start_game.grow(4, 2);
+                if (isSkipped) {
+                    thread1.interrupt();
+                    break;
+                }
                 Thread.sleep(delay);
                 start_game.grow(4, 2);
+                if (isSkipped) {
+                    thread1.interrupt();
+                    break;
+                }
                 Thread.sleep(delay);
                 start_game.grow(4, 2);
+                if (isSkipped) {
+                    thread1.interrupt();
+                    break;
+                }
                 Thread.sleep(delay);
                 start_game.grow(4, 2);
+                if (isSkipped) {
+                    thread1.interrupt();
+                    break;
+                }
                 Thread.sleep(delay);
                 start_game.grow(4, 2);
+                if (isSkipped) {
+                    thread1.interrupt();
+                    break;
+                }
                 Thread.sleep(delay);
                 start_game.grow(4, 2);
+                if (isSkipped) {
+                    thread1.interrupt();
+                    break;
+                }
                 Thread.sleep(delay);
                 start_game.grow(4, 2);
+                if (isSkipped) {
+                    thread1.interrupt();
+                    break;
+                }
                 Thread.sleep(delay);
                 start_game.grow(4, 2);
+                if (isSkipped) {
+                    thread1.interrupt();
+                    break;
+                }
                 Thread.sleep(delay);
                 start_game.grow(4, 2);
+                if (isSkipped) {
+                    thread1.interrupt();
+                    break;
+                }
                 Thread.sleep(delay);
                 start_game.grow(4, 2);
+                if (isSkipped) {
+                    thread1.interrupt();
+                    break;
+                }
                 Thread.sleep(delay);
                 start_game.grow(-4, -2);
+                if (isSkipped) {
+                    thread1.interrupt();
+                    break;
+                }
                 Thread.sleep(delay);
                 start_game.grow(-4, -2);
+                if (isSkipped) {
+                    thread1.interrupt();
+                    break;
+                }
                 Thread.sleep(delay);
                 start_game.grow(-4, -2);
+                if (isSkipped) {
+                    thread1.interrupt();
+                    break;
+                }
                 Thread.sleep(delay);
                 start_game.grow(-4, -2);
+                if (isSkipped) {
+                    thread1.interrupt();
+                    break;
+                }
                 Thread.sleep(delay);
                 start_game.grow(-4, -2);
+                if (isSkipped) {
+                    thread1.interrupt();
+                    break;
+                }
                 Thread.sleep(delay);
                 start_game.grow(-4, -2);
+                if (isSkipped) {
+                    thread1.interrupt();
+                    break;
+                }
                 Thread.sleep(delay);
                 start_game.grow(-4, -2);
+                if (isSkipped) {
+                    thread1.interrupt();
+                    break;
+                }
                 Thread.sleep(delay);
                 start_game.grow(-4, -2);
+                if (isSkipped) {
+                    thread1.interrupt();
+                    break;
+                }
                 Thread.sleep(delay);
                 start_game.grow(-4, -2);
+                if (isSkipped) {
+                    thread1.interrupt();
+                    break;
+                }
                 Thread.sleep(delay);
                 start_game.grow(-4, -2);
 

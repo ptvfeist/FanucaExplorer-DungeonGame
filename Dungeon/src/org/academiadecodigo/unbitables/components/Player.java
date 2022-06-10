@@ -13,9 +13,9 @@ public class Player {
     private Scenary scenary;
     private boolean isPressed;
 
-    public Player(Scenary scenary) {
+    public Player(Scenary scenary, int x, int y) {
 
-        player = new Picture(115, 650, "right1.png");
+        player = new Picture(x,  y, "right1.png");
         player.draw();
 
         this.scenary = scenary;

@@ -22,6 +22,10 @@ public class CornerEnemy extends Enemy {
 
                 for (int i = 0; i < steps; i++) {
 
+                    if (exit) {
+                        thread1.interrupt();
+                        return;}
+
                     Thread.sleep(100);
 
                     switch (direction) {
@@ -48,6 +52,15 @@ public class CornerEnemy extends Enemy {
                     direction = Directions.DOWN;
                 } else {
                     direction = direction.getOposite(direction);
+                }
+
+                if (checkCollision != null) {
+
+                    if (checkCollision.checkEnemyCollision(this)) {
+                        background.unmountScenary();
+                    }
+
+
                 }
 
             }

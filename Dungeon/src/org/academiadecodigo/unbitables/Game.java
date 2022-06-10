@@ -12,11 +12,14 @@ public class Game {
         Scenary scenary = new Scenary();
         scenary.init();
 
-        Player player = new Player(scenary);
+        Player player = new Player(scenary, 115, 650);
 
         KeyboardLogic keyboardLogic = new KeyboardLogic();
         keyboardLogic.init();
         keyboardLogic.setPlayer(player);
+
+        CheckCollision checkCollision = new CheckCollision(player);
+        scenary.setColisionEnemy(checkCollision);
 
     }
 

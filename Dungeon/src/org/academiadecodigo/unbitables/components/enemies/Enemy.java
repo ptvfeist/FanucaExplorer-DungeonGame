@@ -10,11 +10,12 @@ public abstract class Enemy {
     protected Directions direction;
     protected int steps;
     protected Picture enemy;
-    private Scenary background;
+    protected Scenary background;
 
-    private CheckCollision checkCollision = null;
+    protected boolean exit = false;
 
-    private boolean exit;
+    protected CheckCollision checkCollision = null;
+
 
     Thread thread1 = new Thread(){
         public void run(){
@@ -69,7 +70,9 @@ public abstract class Enemy {
 
                 for (int i = 0; i < steps; i++) {
 
-                    if (exit) {return;}
+                    if (exit) {
+                        thread1.interrupt();
+                        return;}
 
                     Thread.sleep(100);
 
@@ -134,7 +137,7 @@ public abstract class Enemy {
         exit =  true;
 
         try {
-            Thread.sleep(250);
+            Thread.sleep(300);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

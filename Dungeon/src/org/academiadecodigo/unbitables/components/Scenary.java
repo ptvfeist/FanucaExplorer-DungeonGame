@@ -3,6 +3,7 @@ package org.academiadecodigo.unbitables.components;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.unbitables.CheckCollision;
 import org.academiadecodigo.unbitables.Directions;
+import org.academiadecodigo.unbitables.EndScreen;
 import org.academiadecodigo.unbitables.audio.Sound;
 import org.academiadecodigo.unbitables.components.enemies.CornerEnemy;
 import org.academiadecodigo.unbitables.components.enemies.Enemy;
@@ -28,6 +29,8 @@ public class Scenary {
     private Sound sound;
 
     private Rectangle background;
+
+    private EndScreen endScreen;
 
     public Scenary() {
 
@@ -147,9 +150,9 @@ public class Scenary {
     }
 
     public void unmountScenary() {
-        /*for (Enemy enemy : enemies) {
+        for (Enemy enemy : enemies) {
             enemy.deleteEnemy();
-        }*/
+        }
 
         for (Blocks limit : limits) {
             limit.delete();
@@ -161,6 +164,11 @@ public class Scenary {
 
         enemies.clear();
 
+        limits.clear();
+        floors.clear();
         background.delete();
+
+        endScreen = new EndScreen();
+        endScreen.lost();
     }
 }

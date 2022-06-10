@@ -16,7 +16,7 @@ public class EndScreen {
     private Picture goAgain;
     private final Game game;
 
-    private final KeyboardLogic keyboardLogic = new KeyboardLogic();
+    private KeyboardLogic keyboardLogic = new KeyboardLogic();
 
     public EndScreen(){
         game = new Game();
