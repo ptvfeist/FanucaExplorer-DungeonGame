@@ -14,6 +14,8 @@ public class CornerEnemy extends Enemy {
         try {
             while (true) {
 
+                Thread.sleep(50);
+
                 if (direction == Directions.LEFT) {
                     enemy.load("enemy/enemy1left.png");
                 } else {

@@ -137,7 +137,7 @@ public abstract class Enemy {
         exit =  true;
 
         try {
-            Thread.sleep(300);
+            Thread.sleep(400);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

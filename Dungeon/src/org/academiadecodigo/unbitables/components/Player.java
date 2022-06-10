@@ -13,6 +13,8 @@ public class Player {
     private Scenary scenary;
     private boolean isPressed;
 
+    private boolean openedChest = false;
+
     public Player(Scenary scenary, int x, int y) {
 
         player = new Picture(x,  y, "right1.png");
@@ -30,6 +32,11 @@ public class Player {
     public void moveRight() {
 
         if (checkBoundaries(Directions.RIGHT)) {
+
+            if (openedChest) {
+                scenary.gameWon();
+            }
+
             return;
         }
         if (!isPressed) {
@@ -50,7 +57,9 @@ public class Player {
     public void moveLeft() {
 
         if (checkBoundaries(Directions.LEFT)) {
-
+            if (openedChest) {
+                scenary.gameWon();
+            }
             return;
         }
         if (!isPressed) {
@@ -70,6 +79,11 @@ public class Player {
     public void moveUp() {
 
         if (checkBoundaries(Directions.UP)) {
+
+            if (openedChest) {
+                scenary.gameWon();
+            }
+
             return;
         }
         if (!isPressed) {
@@ -89,6 +103,11 @@ public class Player {
     public void moveDown() {
 
         if (checkBoundaries(Directions.DOWN)) {
+
+            if (openedChest) {
+                scenary.gameWon();
+            }
+
             return;
         }
         if (!isPressed) {
@@ -107,7 +126,7 @@ public class Player {
 
     private boolean checkBoundaries(Directions direction) {
 
-        LinkedList<Walls> blocks = scenary.getBlocks();
+        LinkedList<Blocks> blocks = scenary.getBlocks();
 
         for (Blocks block : blocks) {
 
@@ -120,8 +139,18 @@ public class Player {
                 if (block.getY() <= player.getMaxY() + Scenary.PIXELS && block.getMaxY() >= player.getMaxY()) {
 
                     if (block.getX() <= player.getX() && block.getMaxX() >= player.getX()) {
+
+                        if (block instanceof Trunk) {
+                            openedChest = true;
+                        }
+
                         return true;
                     } else if (block.getX() <= player.getMaxX() && block.getMaxX() >= player.getMaxX()) {
+
+                        if (block instanceof Trunk) {
+                            openedChest = true;
+                        }
+
                         return true;
                     }
 
@@ -132,8 +161,18 @@ public class Player {
                 if (block.getMaxY() >= getLowerY() - Scenary.PIXELS && block.getY() <= getLowerY()) {
 
                     if (block.getX() <= player.getX() && block.getMaxX() >= player.getX()) {
+
+                        if (block instanceof Trunk) {
+                            openedChest = true;
+                        }
+
                         return true;
                     } else if (block.getX() <= player.getMaxX() && block.getMaxX() >= player.getMaxX()) {
+
+                        if (block instanceof Trunk) {
+                            openedChest = true;
+                        }
+
                         return true;
                     }
 
@@ -144,8 +183,19 @@ public class Player {
                 if (block.getMaxX() >= player.getX() - Scenary.PIXELS && block.getX() <= player.getX()) {
 
                     if (block.getY() <= getLowerY() && block.getMaxY() >= getLowerY()) {
+
+                        if (block instanceof Trunk) {
+
+                            openedChest = true;
+                        }
+
                         return true;
                     } else if(block.getY() <= player.getMaxY() && block.getMaxY() >= player.getMaxY()) {
+
+                        if (block instanceof Trunk) {
+                            openedChest = true;
+                        }
+
                         return true;
                     }
 
@@ -156,8 +206,17 @@ public class Player {
                 if (block.getX() <= player.getMaxX() + Scenary.PIXELS && block.getMaxX() >= player.getMaxX()) {
 
                     if (block.getY() <= getLowerY() && block.getMaxY() >= getLowerY()) {
+                        if (block instanceof Trunk) {
+                            openedChest = true;
+
+                        }
+
                         return true;
                     } else if (block.getY() <= player.getMaxY() && block.getMaxY() >= player.getMaxY()) {
+
+                        if (block instanceof Trunk) {
+                            openedChest = true;
+                        }
                         return true;
                     }
 
@@ -192,6 +251,8 @@ public class Player {
     public void deletePlayer() {
         player.delete();
     }
+
+
 
 
 }

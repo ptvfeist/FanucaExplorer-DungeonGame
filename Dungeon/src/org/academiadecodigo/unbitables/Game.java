@@ -9,6 +9,8 @@ public class Game {
 
 
     public void init() {
+
+
         Scenary scenary = new Scenary();
         scenary.init();
 
@@ -22,6 +24,7 @@ public class Game {
 
         CheckCollision checkCollision = new CheckCollision(player);
         scenary.setColisionEnemy(checkCollision);
+
 
     }
 

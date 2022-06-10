@@ -1,6 +1,7 @@
 package org.academiadecodigo.unbitables.components;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.unbitables.CheckCollision;
 import org.academiadecodigo.unbitables.Directions;
 import org.academiadecodigo.unbitables.EndScreen;
@@ -21,10 +22,14 @@ public class Scenary {
     public static final int PADDING = 10;
     public static final int PIXELS = 25;
 
-    private LinkedList<Walls> limits;
+    private LinkedList<Blocks> limits;
 
     private LinkedList<Floor> floors;
     private ArrayList<Enemy> enemies;
+
+    private ArrayList<Items> items;
+
+    private Trunk trunk;
 
     private Player player;
 
@@ -40,21 +45,53 @@ public class Scenary {
         limits = new LinkedList<>();
         enemies = new ArrayList<>();
         floors = new LinkedList<>();
+        items = new ArrayList<>();
         //audioPlayer = new AudioPlayer();
 
     }
 
     public void init() {
         background.draw();
-        setLimits();
+
         setFloor();
+        setItems();
         setEnemies();
 
         //audioPlayer.playMusic("pokemon.wav");
     }
 
-    public void setLimits() {
-
+    public void setItems() {
+        items.add(new Items(60,650,"items/escadas.png"));
+        items.add(new Items(60,665,"items/escadas.png"));
+        items.add(new Items(1350,35,"items/bandeiras2.png"));
+        limits.add(new Items(1275,35,"items/Chair1.png"));
+        limits.add(new Items(1345,50,"items/Crown.png"));
+        items.add(new Items(1240,35,"items/bandeiras2.png"));
+        items.add(new Items(1175,40,"items/Armoury.png"));
+        limits.add(new Items(1235,50,"items/close chest.png"));
+        items.add(new Items(1425,40,"items/Armoury.png"));
+        items.add(new Items(60,575,"items/courtines.png"));
+        limits.add(new Items(1440,300,"items/open chest.png"));
+        items.add(new Items(1235,135,"items/tapete3.png"));
+        items.add(new Items(760,425,"items/boxes.png"));
+        limits.add(new Items(900,550,"items/pote.png"));
+        items.add(new Items(1160,550,"items/sword.png"));
+        items.add(new Items(1230,530,"items/Armoury.png"));
+        items.add(new Items(1000,440,"items/food.png"));
+        items.add(new Items(1075,590,"items/lanças.png"));
+        limits.add(new Items(950,675,"items/lavatorio.png"));
+        limits.add(new Items(760,675,"items/vinho.png"));
+        limits.add(new Items(1270,715,"items/bed.png"));
+        limits.add(new Items(1325,670,"items/minitable.png"));
+        limits.add(new Items(540,60, "items/escadas2.png.jpeg"));
+        items.add(new Items(500, 125, "items/tapete.png"));
+        items.add(new Items(200,40,"items/lanças4.png"));
+        items.add(new Items(100,40,"items/Armoury.png"));
+        items.add(new Items(150,50,"items/knife.png"));
+        items.add(new Items(125,125,"items/tapete2.png"));
+        items.add(new Items(350,370,"items/quadro.png"));
+        items.add(new Items(450,370,"items/quadro2.png"));
+        limits.add(new Trunk(1285,185));
 
     }
 
@@ -151,8 +188,12 @@ public class Scenary {
 
     }
 
-    public LinkedList<Walls> getBlocks() {
+    public LinkedList<Blocks> getBlocks() {
         return limits;
+    }
+
+    public Trunk getTrunk() {
+        return trunk;
     }
 
     public void unmountScenary() {
@@ -176,8 +217,37 @@ public class Scenary {
         limits.clear();
         floors.clear();
         background.delete();
-
         player.deletePlayer();
+    }
+
+    public void gameWon() {
+
+        endScreen = new EndScreen();
+        endScreen.init();
+
+
+        /*for (Enemy enemy : enemies) {
+            enemy.deleteEnemy();
+        }
+
+        for (Blocks limit : limits) {
+            limit.delete();
+        }
+
+        for (Floor floor : floors) {
+            floor.delete();
+        }
+
+        enemies.clear();
+
+        limits.clear();
+        floors.clear();
+        background.delete();
+        player.deletePlayer();
+
+
+        endScreen = new EndScreen();
+        endScreen.win();*/
 
     }
 }

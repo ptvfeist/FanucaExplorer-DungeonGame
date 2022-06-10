@@ -1,12 +1,10 @@
 package org.academiadecodigo.unbitables.components;
 
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public abstract class Blocks {
 
-    Picture block;
+    protected Picture block;
 
     public Blocks(int x, int y, String resource) {
         block = new Picture(x, y, resource);
