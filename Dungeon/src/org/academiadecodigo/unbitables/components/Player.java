@@ -164,7 +164,6 @@ public class Player {
                 }
 
             }
-
         }
 
         return false;
@@ -188,6 +187,10 @@ public class Player {
 
     public int  getIntermediateY() {
         return player.getY() + Scenary.PIXELS;
+    }
+
+    public void deletePlayer() {
+        player.delete();
     }
 
 

@@ -14,6 +14,8 @@ public class Game {
 
         Player player = new Player(scenary, 115, 650);
 
+        scenary.setPlayer(player);
+
         KeyboardLogic keyboardLogic = new KeyboardLogic();
         keyboardLogic.init();
         keyboardLogic.setPlayer(player);

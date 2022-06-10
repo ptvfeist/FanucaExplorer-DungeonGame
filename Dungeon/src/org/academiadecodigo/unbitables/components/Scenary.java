@@ -26,6 +26,8 @@ public class Scenary {
     private LinkedList<Floor> floors;
     private ArrayList<Enemy> enemies;
 
+    private Player player;
+
     private Sound sound;
 
     private Rectangle background;
@@ -54,6 +56,10 @@ public class Scenary {
     public void setLimits() {
 
 
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     public void setEnemies() {
@@ -150,6 +156,9 @@ public class Scenary {
     }
 
     public void unmountScenary() {
+        endScreen = new EndScreen();
+        endScreen.lost();
+
         for (Enemy enemy : enemies) {
             enemy.deleteEnemy();
         }
@@ -168,7 +177,7 @@ public class Scenary {
         floors.clear();
         background.delete();
 
-        endScreen = new EndScreen();
-        endScreen.lost();
+        player.deletePlayer();
+
     }
 }
