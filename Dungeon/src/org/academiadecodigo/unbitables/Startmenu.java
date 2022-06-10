@@ -26,8 +26,7 @@ public class Startmenu {
 
     public Startmenu() {
         this.game = new Game();
-        keyboardLogic.setStartmenu(this);
-        keyboardLogic.init();
+
 
 
     }
@@ -43,6 +42,9 @@ public class Startmenu {
         startGameName();
         startFanuca();
         thread1.start();
+
+        keyboardLogic.setStartmenu(this);
+        keyboardLogic.init();
     }
 
 

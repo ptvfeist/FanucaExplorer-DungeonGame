@@ -127,12 +127,6 @@ public class Player {
 
                 }
 
-                /*if (block.getX() <= player.getX() && block.getMaxX() >= player.getX() && block.getY() <= player.getMaxY() && block.getY() + (2 * Scenary.PIXELS) >= player.getMaxY()) {
-                    return true;
-                } else if (block.getX() <= player.getMaxX() && block.getMaxX() >= player.getMaxX() && block.getY() <= player.getMaxY() && block.getY() + (2 * Scenary.PIXELS) >= player.getMaxY()) {
-                    return true;
-                }*/
-
             } else if (direction == Directions.UP) {
 
                 if (block.getMaxY() >= getLowerY() - Scenary.PIXELS && block.getY() <= getLowerY()) {
@@ -144,12 +138,6 @@ public class Player {
                     }
 
                 }
-/*
-                if (block.getX() <= player.getX() && block.getMaxX() >= player.getX() && block.getMaxY() >= player.getY() && block.getMaxY() - (2 * Scenary.PIXELS) <= player.getY()) {
-                    return true;
-                } else if (block.getX() <= player.getMaxX() && block.getMaxX() >= player.getMaxX() && block.getMaxY() >= player.getY() && block.getMaxY() - (2 * Scenary.PIXELS) <= player.getY()) {
-                    return true;
-                }*/
 
             } else if (direction == Directions.LEFT) {
 
@@ -163,12 +151,6 @@ public class Player {
 
                 }
 
-                /*if (block.getY() <= player.getY() && block.getMaxY() >= player.getY() && block.getMaxX() >= player.getX() && block.getMaxX() - (2 * Scenary.PIXELS) <= player.getX()) {
-                    return true;
-                } else if (block.getY() <= player.getMaxY() && block.getMaxY() >= player.getMaxY() && block.getMaxX() >= player.getX() && block.getMaxX() - (2 * Scenary.PIXELS) <= player.getX()) {
-                    return true;
-                }*/
-
             } else if (direction == Directions.RIGHT) {
 
                 if (block.getX() <= player.getMaxX() + Scenary.PIXELS && block.getMaxX() >= player.getMaxX()) {
@@ -181,12 +163,6 @@ public class Player {
 
                 }
 
-                /*if (block.getY() <= player.getY() && block.getMaxY() >= player.getY() && block.getX() <= player.getMaxX() && block.getX() + (2 * Scenary.PIXELS) >= player.getMaxX()) {
-                    return true;
-                } else if (block.getY() <= player.getMaxY() && block.getMaxY() >= player.getMaxY() && block.getX() <= player.getMaxX() && block.getX() + (2 * Scenary.PIXELS) >= player.getMaxX()) {
-                    return true;
-                }*/
-
             }
 
         }
@@ -196,6 +172,22 @@ public class Player {
 
     public int getLowerY() {
         return player.getY() + (Scenary.PIXELS * 2);
+    }
+
+    public int getX() {
+        return player.getX();
+    }
+
+    public int getMaxX() {
+        return player.getMaxX();
+    }
+
+    public int getMaxY() {
+        return player.getMaxY();
+    }
+
+    public int  getIntermediateY() {
+        return player.getY() + Scenary.PIXELS;
     }
 
 

@@ -1,10 +1,17 @@
 package org.academiadecodigo.unbitables.components;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.unbitables.CheckCollision;
+import org.academiadecodigo.unbitables.Directions;
 import org.academiadecodigo.unbitables.audio.Sound;
+import org.academiadecodigo.unbitables.components.enemies.CornerEnemy;
+import org.academiadecodigo.unbitables.components.enemies.Enemy;
+import org.academiadecodigo.unbitables.components.enemies.LineEnemy;
 
 import java.io.*;
 import java.nio.file.*;
+import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -15,7 +22,8 @@ public class Scenary {
 
     private LinkedList<Walls> limits;
 
-    private Blocks[] walls = new Walls[20];
+    private LinkedList<Floor> floors;
+    private ArrayList<Enemy> enemies;
 
     private Sound sound;
 
@@ -23,8 +31,10 @@ public class Scenary {
 
     public Scenary() {
 
-        background = new Rectangle (PADDING, PADDING, 1500, 800);
+        background = new Rectangle(PADDING, PADDING, 1500, 800);
         limits = new LinkedList<>();
+        enemies = new ArrayList<>();
+        floors = new LinkedList<>();
         //audioPlayer = new AudioPlayer();
 
     }
@@ -33,12 +43,32 @@ public class Scenary {
         background.draw();
         setLimits();
         setFloor();
+        setEnemies();
 
         //audioPlayer.playMusic("pokemon.wav");
     }
 
     public void setLimits() {
 
+
+    }
+
+    public void setEnemies() {
+
+        enemies.add(new LineEnemy(70, 140, Directions.RIGHT, 18, this));
+        enemies.add(new LineEnemy(500, 55, Directions.DOWN, 16, this));
+        enemies.add(new LineEnemy(760, 550, Directions.RIGHT, 26, this));
+        enemies.add(new CornerEnemy(1320, 560, Directions.LEFT, 15, this));
+
+    }
+
+    public void setColisionEnemy(CheckCollision checkCollision) {
+
+        for (Enemy enemy : enemies) {
+
+            enemy.setCheckCollision(checkCollision);
+
+        }
 
     }
 
@@ -66,22 +96,21 @@ public class Scenary {
 
                     } else if (item.equals("1")) {
 
-                        new Floor(col, row);
+                        floors.add(new Floor(col, row));
                         col += 50;
 
                     } else if (item.equals("2")) {
                         limits.add(new Walls(col, row, "block.png"));
 
-                       //new Walls(col, row, "block.png");
-                       col += 50;
+                        col += 50;
                     } else if (item.equals("3")) {
 
                         limits.add(new Walls(col, row, "block_lateral.png"));
-                        //new Walls(col, row, "block_lateral.png");
+
                         col += 50;
                     } else if (item.equals("4")) {
                         limits.add(new Walls(col, row, "block_corner.png"));
-                        //new Walls(col, row, "block_corner.png");
+
                         col += 50;
                     } else if (item.equals("5")) {
 
@@ -89,7 +118,7 @@ public class Scenary {
                         col += 50;
                     } else if (item.equals("6")) {
                         limits.add(new Walls(col, row, "block_inner_corner.png"));
-                        //new Walls(col, row, "block_inner_corner.png");
+
                         col += 50;
                     }
 
@@ -102,15 +131,36 @@ public class Scenary {
 
             }
             sc.close();
-        }
-        catch (FileNotFoundException e) {
+        } catch (
+                FileNotFoundException e) {
             e.printStackTrace();
             //System.err.println(file.getAbsolutePath());
+        } catch (
+                ConcurrentModificationException e) {
+
         }
 
     }
 
     public LinkedList<Walls> getBlocks() {
         return limits;
+    }
+
+    public void unmountScenary() {
+        /*for (Enemy enemy : enemies) {
+            enemy.deleteEnemy();
+        }*/
+
+        for (Blocks limit : limits) {
+            limit.delete();
+        }
+
+        for (Floor floor : floors) {
+            floor.delete();
+        }
+
+        enemies.clear();
+
+        background.delete();
     }
 }
