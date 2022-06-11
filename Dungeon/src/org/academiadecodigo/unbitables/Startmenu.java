@@ -2,8 +2,7 @@ package org.academiadecodigo.unbitables;
 
 import org.academiadecodigo.unbitables.KeyboardLogic;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-
-
+import org.academiadecodigo.unbitables.audio.Sound;
 
 
 public class Startmenu {
@@ -13,6 +12,7 @@ public class Startmenu {
     private Picture start_game;
     private Picture fanuca;
     private Game game;
+    private Sound sound;
 
 
     private boolean isSkipped = false;
@@ -23,6 +23,7 @@ public class Startmenu {
 
     public Startmenu() {
         this.game = new Game();
+        this.sound = new Sound();
 
     }
 
@@ -34,6 +35,8 @@ public class Startmenu {
 
     public void init() {
         startBackground();
+        sound.playMusic(0);
+
         startGameName();
         startFanuca();
         thread1.start();
@@ -56,11 +59,11 @@ public class Startmenu {
             throw new RuntimeException(e);
         }
 
-
         startBackground.delete();
         start_game.delete();
         gameName.delete();
         fanuca.delete();
+        sound.stop();
         game.init();
 
     }
@@ -70,7 +73,7 @@ public class Startmenu {
         startBackground.draw();
         startBackground.grow(365,200);
         startBackground.translate(365,200);
-        System.out.println(startBackground.getWidth() +"\n"+ startBackground.getHeight());
+        //System.out.println(startBackground.getWidth() +"\n"+ startBackground.getHeight());
     }
 
     public void startFanuca(){

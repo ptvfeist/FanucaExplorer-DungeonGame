@@ -136,12 +136,12 @@ public abstract class Enemy {
     public void deleteEnemy() {
         exit =  true;
 
-        try {
+        /*try {
             Thread.sleep(400);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
 
-        enemy.delete();
+        enemy.delete();*/
     }
 }

@@ -1,5 +1,6 @@
 package org.academiadecodigo.unbitables.components;
 
+import jdk.nashorn.internal.ir.Block;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.unbitables.CheckCollision;
@@ -10,12 +11,8 @@ import org.academiadecodigo.unbitables.components.enemies.CornerEnemy;
 import org.academiadecodigo.unbitables.components.enemies.Enemy;
 import org.academiadecodigo.unbitables.components.enemies.LineEnemy;
 
-import java.io.*;
-import java.nio.file.*;
 import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
 import java.util.LinkedList;
-import java.util.Scanner;
 
 public class Scenary {
 
@@ -28,8 +25,6 @@ public class Scenary {
     private ArrayList<Enemy> enemies;
 
     private ArrayList<Items> items;
-
-    private Trunk trunk;
 
     private Player player;
 
@@ -46,21 +41,26 @@ public class Scenary {
         enemies = new ArrayList<>();
         floors = new LinkedList<>();
         items = new ArrayList<>();
-        //audioPlayer = new AudioPlayer();
-
+        sound = new Sound();
     }
 
     public void init() {
         background.draw();
 
+        sound.playMusic(8);
+
         setFloor();
         setItems();
         setEnemies();
 
-        //audioPlayer.playMusic("pokemon.wav");
     }
 
     public void setItems() {
+
+
+        limits.add(new Trunk(300,650));
+        items.add(new Items(1235,135,"items/tapete3.png"));
+        limits.add(new Trunk(1275,175));
         items.add(new Items(60,650,"items/escadas.png"));
         items.add(new Items(60,665,"items/escadas.png"));
         items.add(new Items(1350,35,"items/bandeiras2.png"));
@@ -72,7 +72,6 @@ public class Scenary {
         items.add(new Items(1425,40,"items/Armoury.png"));
         items.add(new Items(60,575,"items/courtines.png"));
         limits.add(new Items(1440,300,"items/open chest.png"));
-        items.add(new Items(1235,135,"items/tapete3.png"));
         items.add(new Items(760,425,"items/boxes.png"));
         limits.add(new Items(900,550,"items/pote.png"));
         items.add(new Items(1160,550,"items/sword.png"));
@@ -91,7 +90,7 @@ public class Scenary {
         items.add(new Items(125,125,"items/tapete2.png"));
         items.add(new Items(350,370,"items/quadro.png"));
         items.add(new Items(450,370,"items/quadro2.png"));
-        limits.add(new Trunk(1285,185));
+
 
     }
 
@@ -120,69 +119,75 @@ public class Scenary {
 
     private void setFloor() {
 
-        File file = new File(Paths.get("resources/textFiles/position.txt").toAbsolutePath().toUri());
+        int[][] map = {
+                {5, 2, 2, 2, 2, 6, 0, 0, 5, 2, 2, 2, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 2, 2, 2, 2, 2, 2, 6},
+                {5, 1, 1, 1, 1, 4, 2, 2, 2, 1, 1, 1, 4, 2, 2, 2, 2, 2, 2, 6, 0, 0, 5, 1, 1, 1, 1, 1, 1, 3},
+                {5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 0, 5, 1, 1, 1, 1, 1, 1, 3},
+                {5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 0, 5, 1, 1, 1, 1, 1, 1, 3},
+                {5, 1, 1, 1, 1, 3, 5, 5, 5, 1, 1, 1, 3, 5, 5, 5, 5, 1, 1, 3, 0, 0, 5, 1, 1, 1, 1, 1, 1, 3},
+                {5, 5, 1, 1, 3, 5, 0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 5, 1, 1, 3, 0, 0, 5, 1, 1, 1, 1, 1, 1, 3},
+                {0, 5, 1, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 1, 1, 3, 0, 0, 5, 1, 1, 1, 1, 1, 1, 3},
+                {0, 5, 1, 1, 4, 2, 2, 2, 2, 2, 2, 2, 6, 0, 0, 0, 5, 1, 1, 3, 0, 0, 5, 5, 5, 1, 1, 3, 5, 5},
+                {0, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 5, 2, 2, 1, 1, 4, 2, 6, 0, 0, 5, 1, 1, 3, 0, 0},
+                {0, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 5, 1, 1, 1, 1, 1, 1, 3, 0, 0, 5, 1, 1, 3, 0, 0},
+                {0, 5, 5, 5, 5, 5, 5, 5, 5, 1, 1, 1, 3, 0, 5, 1, 1, 1, 1, 1, 1, 3, 5, 2, 2, 1, 1, 3, 0, 0},
+                {5, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 3, 0, 5, 1, 1, 1, 1, 1, 1, 4, 2, 1, 1, 1, 1, 3, 0, 0},
+                {5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 0},
+                {5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 0},
+                {5, 1, 1, 1, 3, 5, 5, 5, 5, 5, 5, 5, 5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 1, 1, 1, 1, 3, 0, 0},
+                {5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 0, 0},
+        };
 
-        try {
+        int row = PADDING;
+        int col = PADDING;
 
-            int row = PADDING;
-            int col = PADDING;
+        for (int i = 0; i < map.length; i++) {
 
-            Scanner sc = new Scanner(file);
+            for (int j = 0; j < map[i].length; j++) {
 
-            while (sc.hasNextLine()) {
+                if (map[i][j] == 0) {
 
-                String[] line = sc.nextLine().split(" ");
+                    limits.add(new Walls(col, row, "block_top.png"));
+                    col += 50;
 
-                for (String item : line) {
+                } else if (map[i][j] == 1) {
 
-                    if (item.equals("0")) {
+                    floors.add(new Floor(col, row));
+                    col += 50;
 
-                        limits.add(new Walls(col, row, "block_top.png"));
-                        col += 50;
+                }  else if (map[i][j] == 2) {
 
-                    } else if (item.equals("1")) {
+                    limits.add(new Walls(col, row, "block.png"));
+                    col += 50;
 
-                        floors.add(new Floor(col, row));
-                        col += 50;
+                }  else if (map[i][j] == 3) {
 
-                    } else if (item.equals("2")) {
-                        limits.add(new Walls(col, row, "block.png"));
+                    limits.add(new Walls(col, row, "block_lateral.png"));
+                    col += 50;
 
-                        col += 50;
-                    } else if (item.equals("3")) {
+                }  else if (map[i][j] == 4) {
 
-                        limits.add(new Walls(col, row, "block_lateral.png"));
+                    limits.add(new Walls(col, row, "block_corner.png"));
+                    col += 50;
 
-                        col += 50;
-                    } else if (item.equals("4")) {
-                        limits.add(new Walls(col, row, "block_corner.png"));
+                }  else if (map[i][j] == 5) {
 
-                        col += 50;
-                    } else if (item.equals("5")) {
+                    limits.add(new Walls(col, row, "block_top.png"));
+                    col += 50;
 
-                        limits.add(new Walls(col, row, "block_top.png"));
-                        col += 50;
-                    } else if (item.equals("6")) {
-                        limits.add(new Walls(col, row, "block_inner_corner.png"));
+                }   else if (map[i][j] == 6) {
 
-                        col += 50;
-                    }
-
-                    if (col >= 1500) {
-                        row += 50;
-                        col = PADDING;
-                    }
+                    limits.add(new Walls(col, row, "block_inner_corner.png"));
+                    col += 50;
 
                 }
 
+                if (col >= 1500) {
+                    row += 50;
+                    col = PADDING;
+                }
+
             }
-            sc.close();
-        } catch (
-                FileNotFoundException e) {
-            e.printStackTrace();
-            //System.err.println(file.getAbsolutePath());
-        } catch (
-                ConcurrentModificationException e) {
 
         }
 
@@ -192,19 +197,15 @@ public class Scenary {
         return limits;
     }
 
-    public Trunk getTrunk() {
-        return trunk;
-    }
-
     public void unmountScenary() {
-        endScreen = new EndScreen();
-        endScreen.lost();
 
         for (Enemy enemy : enemies) {
             enemy.deleteEnemy();
         }
 
-        for (Blocks limit : limits) {
+        sound.stop();
+
+        /*for (Blocks limit : limits) {
             limit.delete();
         }
 
@@ -215,39 +216,58 @@ public class Scenary {
         enemies.clear();
 
         limits.clear();
-        floors.clear();
-        background.delete();
+
+        floors.clear();*/
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        endScreen = new EndScreen();
+        endScreen.lost();
+
         player.deletePlayer();
+        background.delete();
+
+
     }
 
     public void gameWon() {
 
-        endScreen = new EndScreen();
-        endScreen.init();
+        try {
+
+            for (Blocks block : limits) {
+
+                if (block instanceof Trunk) {
+
+                    ((Trunk) block).open();
+
+                    break;
+                }
+            }
+
+            Thread.sleep(1000);
+
+            sound.stop();
+
+            endScreen = new EndScreen();
+            endScreen.init();
 
 
-        /*for (Enemy enemy : enemies) {
-            enemy.deleteEnemy();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
 
-        for (Blocks limit : limits) {
-            limit.delete();
-        }
-
-        for (Floor floor : floors) {
-            floor.delete();
-        }
-
-        enemies.clear();
-
-        limits.clear();
-        floors.clear();
-        background.delete();
-        player.deletePlayer();
 
 
-        endScreen = new EndScreen();
-        endScreen.win();*/
+
+
 
     }
+
+
 }
+
+

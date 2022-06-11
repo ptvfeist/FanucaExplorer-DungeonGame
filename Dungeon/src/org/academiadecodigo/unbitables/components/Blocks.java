@@ -32,5 +32,9 @@ public abstract class Blocks {
         block.delete();
     }
 
+    public void setImage(String image) {
+        block.load(image);
+    }
+
 
 }

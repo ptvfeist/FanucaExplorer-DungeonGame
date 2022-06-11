@@ -1,6 +1,7 @@
 package org.academiadecodigo.unbitables;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+import org.academiadecodigo.unbitables.audio.Sound;
 
 public class EndScreen {
 
@@ -13,31 +14,35 @@ public class EndScreen {
 
     private boolean isSkipped = false;
 
-    private Picture goAgain;
-    private final Game game;
+    //private Picture goAgain;
+    //private final Game game;
+    private Sound sound;
 
-    private KeyboardLogic keyboardLogic = new KeyboardLogic();
+    //private KeyboardLogic keyboardLogic = new KeyboardLogic();
 
     public EndScreen() {
-        game = new Game();
-        keyboardLogic.setEndScreen(this);
-        keyboardLogic.init();
+        //game = new Game();
+        //keyboardLogic.setEndScreen(this);
+        //keyboardLogic.init();
         background = new Picture(10, 10, "StartGamePicture.png");
         background.draw();
         background.grow(365, 200);
         background.translate(365, 200);
+        sound = new Sound();
     }
 
     public void delete() {
         fanuca1.delete();
         background.delete();
-        goAgain.delete();
+        //goAgain.delete();
         if (isWin) {
             win.delete();
         } else {
             lost.delete();
         }
-        game.init();
+        sound.stop();
+
+        //game.init();
     }
 
     Thread thread1 = new Thread() {
@@ -52,6 +57,7 @@ public class EndScreen {
 
 
     public void lost() {
+        sound.playMusic(7);
         isWin = false;
         lost = new Picture(background.getWidth() / 2, background.getHeight() / 2, "wasted.png");
         lost.draw();
@@ -221,7 +227,7 @@ public class EndScreen {
             fanuca1.translate(-20, 0);
             fanuca1.load("left1.png");
             Thread.sleep(200);
-            goAgain = new Picture(background.getWidth() / 2, 600, "pressfanuca.png");
+            /*goAgain = new Picture(background.getWidth() / 2, 600, "pressfanuca.png");
             goAgain.translate(-goAgain.getWidth() / 2, 0);
             goAgain.draw();
             while (!isSkipped)
@@ -269,7 +275,7 @@ public class EndScreen {
 
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
-                }
+                }*/
 
 
         } catch (InterruptedException e) {
@@ -278,6 +284,7 @@ public class EndScreen {
     }
 
     public void win() {
+        sound.playMusic(5);
         isWin = true;
         win = new Picture(background.getWidth() / 2, background.getHeight() / 2, "youwin.png");
         win.draw();
@@ -449,7 +456,7 @@ public class EndScreen {
             Thread.sleep(200);
 
 
-            goAgain = new Picture(background.getWidth()/2,600,"pressfanuca.png");
+            /*goAgain = new Picture(background.getWidth()/2,600,"pressfanuca.png");
             goAgain.translate(-goAgain.getWidth() / 2, 0);
             goAgain.draw();
             while (!isSkipped)
@@ -497,7 +504,7 @@ public class EndScreen {
 
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
-                }
+                }*/
 
 
         } catch (InterruptedException e) {

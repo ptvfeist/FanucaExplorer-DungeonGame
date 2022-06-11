@@ -3,6 +3,7 @@ package org.academiadecodigo.unbitables.components;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.unbitables.Directions;
+import org.academiadecodigo.unbitables.audio.Sound;
 
 import java.util.LinkedList;
 
@@ -14,6 +15,7 @@ public class Player {
     private boolean isPressed;
 
     private boolean openedChest = false;
+    private Sound sound;
 
     public Player(Scenary scenary, int x, int y) {
 
@@ -21,6 +23,8 @@ public class Player {
         player.draw();
 
         this.scenary = scenary;
+
+        this.sound = new Sound();
 
     }
 
@@ -251,8 +255,5 @@ public class Player {
     public void deletePlayer() {
         player.delete();
     }
-
-
-
 
 }

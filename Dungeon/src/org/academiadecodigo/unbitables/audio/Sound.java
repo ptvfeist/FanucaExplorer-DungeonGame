@@ -9,15 +9,23 @@ import javax.sound.sampled.Clip;
 public class Sound {
 
     Clip clip;
-    URL soundURL[] = new URL[20];
+    URL soundURL[] = new URL[15];
 
     public Sound() {
 
-        soundURL[0] = getClass().getResource("/sounds/Title.wav");
-        soundURL[1] = getClass().getResource("/sounds/SE1.wav");
-        soundURL[2] = getClass().getResource("/sounds/SE2.wav");
-        soundURL[3] = getClass().getResource("/sounds/start1.wav");
-        soundURL[4] = getClass().getResource("/sounds/ .wav");
+        soundURL[0] = getClass().getResource("/sounds/StartMenu.wav");
+        soundURL[1] = getClass().getResource("/sounds/.wav");
+        soundURL[2] = getClass().getResource("/sounds/.wav");
+        soundURL[3] = getClass().getResource("/sounds/.wav");
+        soundURL[4] = getClass().getResource("/sounds/.wav");
+        soundURL[5] = getClass().getResource("/sounds/SimplyTheBest.wav");
+        soundURL[6] = getClass().getResource("/sounds/.wav");
+        soundURL[7] = getClass().getResource("/sounds/SeeYouAgain.wav");
+        soundURL[8] = getClass().getResource("/sounds/DarkHallway.wav");
+        soundURL[9] = getClass().getResource("/sounds/.wav");
+        soundURL[10] = getClass().getResource("/sounds/.wav");
+        soundURL[11] = getClass().getResource("/sounds/LoseGoofy.wav");
+
 
 
     }
