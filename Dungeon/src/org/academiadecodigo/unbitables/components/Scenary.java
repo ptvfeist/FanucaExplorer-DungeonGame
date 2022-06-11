@@ -1,8 +1,6 @@
 package org.academiadecodigo.unbitables.components;
 
-import jdk.nashorn.internal.ir.Block;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.unbitables.CheckCollision;
 import org.academiadecodigo.unbitables.Directions;
 import org.academiadecodigo.unbitables.EndScreen;
@@ -57,8 +55,6 @@ public class Scenary {
 
     public void setItems() {
 
-
-        limits.add(new Trunk(300,650));
         items.add(new Items(1235,135,"items/tapete3.png"));
         limits.add(new Trunk(1275,175));
         items.add(new Items(60,650,"items/escadas.png"));
