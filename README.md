@@ -1,4 +1,4 @@
-# Dangeon
+# Dungeon Game - Fanuca The Explorer
 
 // Project Description 
 
