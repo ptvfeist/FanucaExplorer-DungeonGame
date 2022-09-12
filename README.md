@@ -2,7 +2,7 @@
 
 // Project Description 
 
-Our first challenge as a group, during our 4th week at <Academia de Código_> #71 Bootcamp @ Lisboa. Based on the technology we learned at this point, we were challenged to develop a game. Deadline for project deployment: 10 nights.
+Our first challenge as a group, during our 4th week at <Academia de Código_> #71 & #73 Bootcamp @ Lisboa. Based on the technology we learned at this point, we were challenged to develop a game. Deadline for project deployment: 10 nights.
 
 // The Idea 
 
